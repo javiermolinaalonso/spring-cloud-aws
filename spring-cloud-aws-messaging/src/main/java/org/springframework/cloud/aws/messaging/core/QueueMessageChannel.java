@@ -171,7 +171,7 @@ public class QueueMessageChannel extends AbstractMessageChannel implements Polla
         ReceiveMessageResult receiveMessageResult = this.amazonSqs.receiveMessage(
                 new ReceiveMessageRequest(this.queueUrl).
                         withMaxNumberOfMessages(1).
-                        withWaitTimeSeconds(Long.valueOf(timeout).intValue()).
+                        withWaitTimeSeconds(Long.valueOf(timeout/1000).intValue()).
                         withAttributeNames(ATTRIBUTE_NAMES).
                         withMessageAttributeNames(MESSAGE_ATTRIBUTE_NAMES));
         if (receiveMessageResult.getMessages().isEmpty()) {
